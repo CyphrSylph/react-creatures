@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CreatureFeature from "./CreatureFeature";
+
+function getRandomCreature() {
+    const creatures = ['ent','kappa','kraken','lamia','loch-ness','medusa','mermaid','orc','troll'];
+    return creatures[Math.floor(Math.random() * creatures.length)];
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [creatures, setCreatures] = useState([]);
+    
+    const handleClick = () => {
+        setCreatures([...creatures, getRandomCreature()])
+    };
+
+    const renderedCreatures = creatures.map((creature, index) => {
+        return <CreatureFeature type={creature} key={index} />
+    });
+    
+    return (
+        <div>
+            <button onClick={handleClick}>Add Creature</button>
+            <div>{renderedCreatures}</div>
+        </div>
+    );
 }
 
 export default App;
