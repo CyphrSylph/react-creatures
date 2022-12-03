@@ -1,8 +1,9 @@
 import { useState } from "react";
 import CreatureFeature from "./CreatureFeature";
+import './App.css';
 
 function getRandomCreature() {
-    const creatures = ['ent','kappa','kraken','lamia','loch-ness','medusa','mermaid','orc','troll'];
+    const creatures = ['ent','kappa','kraken','lamia','lochness','medusa','mermaid','orc','troll'];
     return creatures[Math.floor(Math.random() * creatures.length)];
 }
 
@@ -18,9 +19,9 @@ function App() {
     });
     
     return (
-        <div>
+        <div className="app">
             <button onClick={handleClick}>Add Creature</button>
-            <div>{renderedCreatures}</div>
+            <div className="creature-list">{renderedCreatures}</div>
         </div>
     );
 }
